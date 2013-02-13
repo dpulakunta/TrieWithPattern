@@ -22,7 +22,7 @@ public class TestTrie extends TestCase {
 	@Test
 	public void testContains() {
 		assertEquals(true, myTestTrie.contains("dog"));
-		assertEquals(false, myTestTrie.contains("dogs"));
+		assertEquals(false, myTestTrie.contains("cogs"));
 	}
 	@Test
 	public void testToString() {

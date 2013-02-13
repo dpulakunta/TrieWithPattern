@@ -39,19 +39,23 @@ public class Node {
 	}
 
 	public void addWord(String word) {
+		Node traverse = this;
+		insertNode(traverse, word);
+	}
+	public void insertNode(Node currentNode,String word){
 		if (word.length() == 0 ) {
 			isWord = true;
 			return;
 		}
-		Node forWord = nodeFor(word);
-		forWord.addWord(word.substring(1));
+		Node forWord = nodeFor(currentNode,word);
+		forWord.insertNode(forWord,word.substring(1));
 	}
-	private Node nodeFor(String word) {
+	private Node nodeFor(Node currentNode,String word) {
 		char charToInsert = word.charAt(0);
 		int index = charToInsert - 'a';
-		if (child[index] == null) 
-			child[index] = new Node(charToInsert);
-		return child[index];
+		if (currentNode.child[index] == null) 
+			currentNode.child[index] = new Node(charToInsert);
+		return currentNode.child[index];
 	}
 	public Set<Integer> getChildIndex(){
 		Set<Integer> indexes = new HashSet<Integer>(); 

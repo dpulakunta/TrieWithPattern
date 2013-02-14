@@ -2,22 +2,14 @@ package com.adv.sdsu.visitor;
 
 public class NonWordNode extends Node {
     public NonWordNode(char letterToInsert) {
-		letter = letterToInsert;
+    	super.setLetter(letterToInsert);
+    	setChild(new Node[26]);
 	}
     public NonWordNode() {
-		
+    	 setChild(new Node[26]);
 	}
 	@Override
 	public void accept(Visitor v) {
 		v.visitNonWordNode(this);
 	}
-
-	@Override
-	public void addWord(Node current, char elementToInsert) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
 }

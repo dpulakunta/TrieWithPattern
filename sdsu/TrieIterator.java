@@ -35,9 +35,9 @@ public class TrieIterator implements Iterator<String> {
 
 	@Override
 	public boolean hasNext() {
-		if(charCovered.peek() != null)
-			return true;
-		return false;
+		if(buildWord() == null)
+			return false;
+		return true;
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class TrieIterator implements Iterator<String> {
 			for(int index = charIndex; index < 25; index ++){
 				if(null!=currentNode.getChild(index))
 				{
-					//loopCheck=false;
+					loopCheck2=false;
 					charCovered.push(currentNode.getChild(index));
 					if(currentNode.getChild(index).isWord())
 					{

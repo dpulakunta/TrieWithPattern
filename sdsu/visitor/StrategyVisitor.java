@@ -2,7 +2,7 @@ package com.adv.sdsu.visitor;
 
 public class StrategyVisitor extends Visitor {
 	private Strategy algoToFind;
-	
+
 	public Strategy getAlgoToFind() {
 		return algoToFind;
 	}
@@ -18,16 +18,16 @@ public class StrategyVisitor extends Visitor {
 	@Override
 	void visitWordNode(WordNode n) {
 		elementsInTheTrie.push(n);
-		
-		if(algoToFind.findWords(buildWord()))
+
+		if (algoToFind.findWords(buildWord()))
 			wordsInTrie.add(buildWord());
-		
-		for(int i=0;i<26;i++){
-			Node newNode =  n.getChildAt(i);
+
+		for (int i = 0; i < 26; i++) {
+			Node newNode = n.getChildAt(i);
 			newNode.accept(this);
 		}
 		elementsInTheTrie.pop();
-		
+
 	}
 
 }

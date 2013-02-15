@@ -1,7 +1,21 @@
+/* ClassName : Node
+ * 
+ * Created by: Dharmendhar Pulakunta
+ * Red ID: 816324464
+ * 
+ * Reason: 
+ * Trie class with the functionality of
+ * add
+ * contains
+ * toString
+ * 
+ * Class variables: 
+ * letter: character of the Trie to store
+ * child: children nodes of the parent can have upto 26 alphabets
+ * isWord: to check if we have reached the end of word
+ * 
+ */
 package com.adv.sdsu;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class Node {
 	private char letter;
@@ -37,34 +51,40 @@ public class Node {
 	public void setWord(boolean isWord) {
 		this.isWord = isWord;
 	}
-
-	public void addWord(String word) {
-		Node traverse = this;
-		insertNode(traverse, word);
-	}
-	public void insertNode(Node currentNode,String word){
+	/* Function name: addWord
+	 * 
+	 * Input: word: string that we will insert into the Trie
+	 * 
+	 * Output: none
+	 * Breaking the word into characters and storing them in Trie
+	 */
+	
+	public void addWord(String word){
+		//Condition to stop recursion and mark the end of the word
 		if (word.length() == 0 ) {
 			isWord = true;
 			return;
 		}
-		Node forWord = nodeFor(currentNode,word);
-		forWord.insertNode(forWord,word.substring(1));
+		//getting a new node to insert one alphabet
+		Node forWord = nodeFor(word);
+		forWord.addWord(word.substring(1));
 	}
-	private Node nodeFor(Node currentNode,String word) {
+	
+	/* Function name: nodeFor
+	 * 
+	 * Input: word: string that we will insert into the Trie
+	 * 
+	 * Output: Returns a node
+	 * creates a new Node or returns and child node which already exists
+	 * 
+	 */
+	private Node nodeFor(String word) {
 		char charToInsert = word.charAt(0);
 		int index = charToInsert - 'a';
-		if (currentNode.child[index] == null) 
-			currentNode.child[index] = new Node(charToInsert);
-		return currentNode.child[index];
+		//Checking if current character already exists or a new
+		//node need to be created for the present character
+		if (child[index] == null) 
+			child[index] = new Node(charToInsert);
+		return child[index];
 	}
-	public Set<Integer> getChildIndex(){
-		Set<Integer> indexes = new HashSet<Integer>(); 
-		for(int i=0; i <25;i++){
-			if(child[i] != null)
-				indexes.add(i);
-		}
-		return indexes;
-		
-	}
-
 }

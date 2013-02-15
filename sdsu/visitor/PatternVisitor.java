@@ -2,7 +2,7 @@ package com.adv.sdsu.visitor;
 
 public class PatternVisitor extends Visitor {
 	private String searchPattern = new String();
-	
+
 	public String getSearchPattern() {
 		return searchPattern;
 	}
@@ -14,14 +14,13 @@ public class PatternVisitor extends Visitor {
 	@Override
 	void visitNullNode(NullNode n) {
 
-
 	}
 
 	@Override
 	void visitNonWordNode(NonWordNode n) {
 		elementsInTheTrie.push(n);
-		for(int i=0;i<26;i++){
-			Node newNode =  n.getChildAt(i);
+		for (int i = 0; i < 26; i++) {
+			Node newNode = n.getChildAt(i);
 			newNode.accept(this);
 		}
 		elementsInTheTrie.pop();
@@ -31,14 +30,13 @@ public class PatternVisitor extends Visitor {
 	void visitWordNode(WordNode w) {
 		elementsInTheTrie.push(w);
 		String wordToStore = buildWord();
-		if(wordToStore.contains(searchPattern))	
+		if (wordToStore.contains(searchPattern))
 			wordsInTrie.add(wordToStore);
-		for(int i=0;i<26;i++){
-			Node newNode =  w.getChildAt(i);
+		for (int i = 0; i < 26; i++) {
+			Node newNode = w.getChildAt(i);
 			newNode.accept(this);
 		}
 		elementsInTheTrie.pop();
 	}
-	
 
 }

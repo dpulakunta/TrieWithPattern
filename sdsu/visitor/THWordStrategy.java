@@ -1,11 +1,12 @@
 package com.adv.sdsu.visitor;
 
 public class THWordStrategy implements Strategy {
-	private String[] elements = new String[100];
+	private String elements = new String();
 
 	@Override
 	public boolean findWords(String currentWord) {
-		if (currentWord.contains("th"))
+		elements = currentWord;
+		if (elements.contains("th"))
 			return true;
 		return false;
 	}

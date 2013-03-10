@@ -1,28 +1,33 @@
+/* ClassName : TwoVowelStrategy
+ * 
+ * Created by: Dharmendhar Pulakunta
+ * Red ID: 816324464
+ *
+ * 
+ * Class variables: 
+ *
+ * 
+ * Most of the functionality is in the base class we are providing
+ * only the functionality required for this visitor 
+ */
 package com.adv.sdsu.visitor;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class TwoVowelStrategy implements Strategy {
-
-	private String[] elements;
-
+	private String presentWord = new String();
+	//Finding words three or more vowels in it
 	@Override
 	public boolean findWords(String currentWord) {
-
+		presentWord = currentWord;
 		int count = 0;
 		int index = 0;
-
-		if (currentWord.contains("a"))
-			count++;
-		if (currentWord.contains("e"))
-			count++;
-		if (currentWord.contains("i"))
-			count++;
-		if (currentWord.contains("o"))
-			count++;
-		if (currentWord.contains("u"))
-			count++;
+		//looping thru each character to find the total count
+		//of the number of vowels
+		for(int i=0;i<currentWord.length();i++){
+			char presentChar = presentWord.charAt(i);
+			if(presentChar == 'a' || presentChar == 'e' || presentChar == 'i' ||presentChar == 'o' ||presentChar == 'u')
+				count++;
+		}
 		if (count >= 3)
 			return true;
 

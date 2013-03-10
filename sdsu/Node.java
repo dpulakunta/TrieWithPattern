@@ -4,10 +4,7 @@
  * Red ID: 816324464
  * 
  * Reason: 
- * Trie class with the functionality of
- * add
- * contains
- * toString
+ * To create the structure for Trie elements
  * 
  * Class variables: 
  * letter: character of the Trie to store
